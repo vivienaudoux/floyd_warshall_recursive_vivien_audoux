@@ -15,4 +15,4 @@ This repository contains a recursive implementation of the Floyd Warshall Algori
 3. To run the unit test, navigate to the directory containing the test script and execute the following command in the terminal:
 
 ```bash
-python floyd_warshall_recursive.py
+python floyd_warshall_recursive_unittest.py
