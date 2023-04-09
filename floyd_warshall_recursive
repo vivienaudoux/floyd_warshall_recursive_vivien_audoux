@@ -1,0 +1,39 @@
+def floyd_warshall_recursive(graph, dist, i, j, k):
+    if k == -1:
+        return dist[i][j]
+    elif i == j:
+        return 0
+    else:
+        without_k = floyd_warshall_recursive(graph, dist, i, j, k - 1)
+        via_k = floyd_warshall_recursive(graph, dist, i, k, k - 1) + floyd_warshall_recursive(graph, dist, k, j, k - 1)
+        return min(without_k, via_k)
+
+def initialize_distance_matrix(graph):
+    n = len(graph)
+    dist = [[float('inf')] * n for _ in range(n)]
+    for i in range(n):
+        for j in range(n):
+            if i == j:
+                dist[i][j] = 0
+            elif graph[i][j] != 0:
+                dist[i][j] = graph[i][j]
+    return dist
+
+def floyd_warshall(graph):
+    n = len(graph)
+    dist = initialize_distance_matrix(graph)
+    for i in range(n):
+        for j in range(n):
+            dist[i][j] = floyd_warshall_recursive(graph, dist, i, j, n - 1)
+    return dist
+
+graph = [
+    [0, 5, float('inf'), 10],
+    [float('inf'), 0, 3, float('inf')],
+    [float('inf'), float('inf'), 0, 1],
+    [float('inf'), float('inf'), float('inf'), 0]
+]
+
+result = floyd_warshall(graph)
+for row in result:
+    print(row)
