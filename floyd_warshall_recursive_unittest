@@ -1,4 +1,4 @@
-from floyd_warshall_recursive_unittest import *
+from floyd_warshall_recursive import *
 import unittest
 
 class TestFloydWarshall(unittest.TestCase):
