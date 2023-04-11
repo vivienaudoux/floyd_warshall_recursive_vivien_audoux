@@ -1,10 +1,10 @@
-#Importing the required modules
+#Importing the required modules.
 import unittest
 import sys
 sys.path.append("Functions")
 from functions import *
 
-#Defining unittest for the 3 functions that compose our recursive implementation of Floyd Warshall
+#Defining unittest for the 3 functions that compose our recursive implementation of Floyd Warshall.
 class TestFloydWarshallRecursive(unittest.TestCase):
 
     def test_simple_graph(self):

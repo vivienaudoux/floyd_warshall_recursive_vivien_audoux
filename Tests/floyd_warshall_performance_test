@@ -1,30 +1,42 @@
 import time
+import random
 import sys
 sys.path.append("Functions")
 from functions import *
 
-#Creating a test graph to test the performance of the Floyd Warshall implementations
-test_performance_graph = [
-    [0, 5, float('inf'), 10],
-    [float('inf'), 0, 3, float('inf')],
-    [float('inf'), float('inf'), 0, 1],
-    [float('inf'), float('inf'), float('inf'), 0]
-]
+#Creating a function to create a random graph to test the performance of the Floyd Warshall implementations.
+#We assume a graph with 4 vertices for the performance test.
+def generate_random_graph(max_weight=10, no_connection_weight=float('inf')):
+    graph = [[no_connection_weight for _ in range(4)] for _ in range(4)]
+    
+    for i in range(4):
+        for j in range(i+1, 4):
+            weight = random.randint(1, max_weight)
+            if random.random() < 0.5:  # 50% chance of connection
+                graph[i][j] = weight
+                graph[j][i] = weight
+                
+    for i in range(4):
+        graph[i][i] = 0
+        
+    return graph
 
-#Testing the performance of the recursive form of Floyd Warshall
+test_performance_graph = generate_random_graph()
+
+#Testing the performance of the recursive form of Floyd Warshall.
 start_time = time.time()
 result = floyd_warshall(test_performance_graph)
 end_time = time.time()
 exec_time_recursive = end_time - start_time
 print("Floyd Warshall in recursive form takes:", '{:f}'.format(exec_time_recursive), "seconds")
 
-#Testing the performance of the imperative form of Floyd Warshall
+#Testing the performance of the imperative form of Floyd Warshall.
 start_time = time.time()
 result = floyd_warshall_imperative(test_performance_graph)
 end_time = time.time()
 exec_time_imperative = end_time - start_time
 print("Floyd Warshall in imperative form takes:", '{:f}'.format(exec_time_imperative), "seconds")
 
-#Comparing the performance of the imperative and recursive forms of Floyd Warshall
+#Comparing the performance of the imperative and recursive forms of Floyd Warshall.
 performance_difference = exec_time_recursive / exec_time_imperative
 print("floyd_warshall in imperative form takes is", '{:.2f}'.format(performance_difference), "times faster")

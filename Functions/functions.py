@@ -1,4 +1,4 @@
-#Creating the 3 functions needed to create a recursive version of Floyd Warshall
+#Creating the 3 functions needed to create a recursive version of Floyd Warshall.
 def floyd_warshall_recursive(graph, dist, i, j, k):
     if k == -1:
         return dist[i][j]
@@ -28,8 +28,9 @@ def floyd_warshall(graph):
             dist[i][j] = floyd_warshall_recursive(graph, dist, i, j, n - 1)
     return dist
 
-#Copy/pasting an imperative implementation of Floyd Marshall for testing purposes
+#Copy/pasting an imperative implementation of Floyd Marshall for testing purposes.
 #Code is copy/pasted from https://www.geeksforgeeks.org/floyd-warshall-algorithm-dp-16/
+#We assume a graph with 4 vertices for the performance test.
 def floyd_warshall_imperative(graph):
     dist = list(map(lambda i: list(map(lambda j: j, i)), graph))
     for k in range(4):
