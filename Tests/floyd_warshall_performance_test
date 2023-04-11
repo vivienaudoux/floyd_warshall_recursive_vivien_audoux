@@ -1,0 +1,30 @@
+import time
+import sys
+sys.path.append("Functions")
+from functions import *
+
+#Creating a test graph to test the performance of the Floyd Warshall implementations
+test_performance_graph = [
+    [0, 5, float('inf'), 10],
+    [float('inf'), 0, 3, float('inf')],
+    [float('inf'), float('inf'), 0, 1],
+    [float('inf'), float('inf'), float('inf'), 0]
+]
+
+#Testing the performance of the recursive form of Floyd Warshall
+start_time = time.time()
+result = floyd_warshall(test_performance_graph)
+end_time = time.time()
+exec_time_recursive = end_time - start_time
+print("Floyd Warshall in recursive form takes:", '{:f}'.format(exec_time_recursive), "seconds")
+
+#Testing the performance of the imperative form of Floyd Warshall
+start_time = time.time()
+result = floyd_warshall_imperative(test_performance_graph)
+end_time = time.time()
+exec_time_imperative = end_time - start_time
+print("Floyd Warshall in imperative form takes:", '{:f}'.format(exec_time_imperative), "seconds")
+
+#Comparing the performance of the imperative and recursive forms of Floyd Warshall
+performance_difference = exec_time_recursive / exec_time_imperative
+print("floyd_warshall in imperative form takes is", '{:.2f}'.format(performance_difference), "times faster")
