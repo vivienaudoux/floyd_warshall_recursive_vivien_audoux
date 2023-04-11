@@ -6,37 +6,53 @@ from functions import *
 
 #Creating a function to create a random graph to test the performance of the Floyd Warshall implementations.
 #We assume a graph with 4 vertices for the performance test.
+vertices = 4
+
 def generate_random_graph(max_weight=10, no_connection_weight=float('inf')):
-    graph = [[no_connection_weight for _ in range(4)] for _ in range(4)]
+    graph = [[no_connection_weight for _ in range(vertices)] for _ in range(vertices)]
     
-    for i in range(4):
-        for j in range(i+1, 4):
+    for i in range(vertices):
+        for j in range(i+1, vertices):
             weight = random.randint(1, max_weight)
             if random.random() < 0.5:  # 50% chance of connection
                 graph[i][j] = weight
                 graph[j][i] = weight
                 
-    for i in range(4):
+    for i in range(vertices):
         graph[i][i] = 0
         
     return graph
 
-test_performance_graph = generate_random_graph()
-
 #Testing the performance of the recursive form of Floyd Warshall.
-start_time = time.time()
-result = floyd_warshall(test_performance_graph)
-end_time = time.time()
-exec_time_recursive = end_time - start_time
-print("Floyd Warshall in recursive form takes:", '{:f}'.format(exec_time_recursive), "seconds")
+exec_times_recursive_list = []
+
+for x in range(100):
+    test_performance_graph = generate_random_graph()
+    start_time = time.time()
+    result = floyd_warshall(test_performance_graph)
+    end_time = time.time()
+    exec_time_recursive = end_time - start_time
+    exec_times_recursive_list.append(exec_time_recursive)
+
+avg_exec_time_recursive = sum(exec_times_recursive_list) / len(exec_times_recursive_list)
+
+print("On average, Floyd Warshall in recursive form takes:", '{:f}'.format(avg_exec_time_recursive), "seconds")
 
 #Testing the performance of the imperative form of Floyd Warshall.
-start_time = time.time()
-result = floyd_warshall_imperative(test_performance_graph)
-end_time = time.time()
-exec_time_imperative = end_time - start_time
-print("Floyd Warshall in imperative form takes:", '{:f}'.format(exec_time_imperative), "seconds")
+exec_times_imperative_list = []
+
+for x in range(100):
+    test_performance_graph = generate_random_graph()
+    start_time = time.time()
+    result = floyd_warshall_imperative(test_performance_graph)
+    end_time = time.time()
+    exec_time_imperative = end_time - start_time
+    exec_times_imperative_list.append(exec_time_imperative)
+
+avg_exec_time_imperative = sum(exec_times_imperative_list) / len(exec_times_imperative_list)
+
+print("On average, Floyd Warshall in imperative form takes:", '{:f}'.format(avg_exec_time_imperative), "seconds")
 
 #Comparing the performance of the imperative and recursive forms of Floyd Warshall.
-performance_difference = exec_time_recursive / exec_time_imperative
-print("floyd_warshall in imperative form takes is", '{:.2f}'.format(performance_difference), "times faster")
+performance_difference = avg_exec_time_recursive / avg_exec_time_imperative
+print("On average, Floyd Warshall in imperative form takes is", '{:.2f}'.format(performance_difference), "times faster")
