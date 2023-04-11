@@ -10,7 +10,8 @@ The recursive version of the Floyd Warshall algorithm is implemented using three
 Additionally, the repository includes an imperative implementation of the Floyd Warshall algorithm, floyd_warshall_imperative(graph), for comparison purposes. The code of this imperative implementation is copy/pasted from https://www.geeksforgeeks.org/floyd-warshall-algorithm-dp-16/
 
 # Performance Testing
-The script floyd_warshall_performance_test tests the performance of both the recursive and imperative implementations using a sample graph. The execution time is measured and printed for each implementation, as well as the performance difference between the two.
+The script floyd_warshall_performance_test tests the performance of both the recursive and imperative implementations using randomly generated sample graphs. The script runs a loop 100 times to generate random graphs and test the performance of both implementations of the Floyd Warshall algorithm. 
+The average execution time for both implementations and the performance difference between the implementations are calculated and printed.
 
 # Unit Testing
 The script floyd_warshall_recursive_unittest includes unit tests for the three main functions of the recursive Floyd Warshall implementation using the unittest module:
