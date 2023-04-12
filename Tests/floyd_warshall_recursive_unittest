@@ -55,5 +55,23 @@ class TestFloydWarshall(unittest.TestCase):
         result = floyd_warshall(graph)
         self.assertEqual(result, expected_result)
 
+#Defining a unittest for the imperative (iterative) implementation of the Floyd Warshall algorithm.
+class TestFloydWarshallImperative(unittest.TestCase):
+    def test_floyd_warshall_imperative(self):
+        # Test case 1: simple graph with 4 vertices
+        graph = [
+            [0, 5, float('inf'), 10],
+            [float('inf'), 0, 3, float('inf')],
+            [float('inf'), float('inf'), 0, 1],
+            [float('inf'), float('inf'), float('inf'), 0]
+        ]
+        expected_output = [
+            [0, 5, 8, 9],
+            [float('inf'), 0, 3, 4],
+            [float('inf'), float('inf'), 0, 1],
+            [float('inf'), float('inf'), float('inf'), 0]
+        ]
+        self.assertEqual(floyd_warshall_imperative(graph), expected_output)
+
 if __name__ == '__main__':
     unittest.main()

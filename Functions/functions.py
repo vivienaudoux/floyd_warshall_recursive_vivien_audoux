@@ -31,11 +31,12 @@ def floyd_warshall(graph):
 #Copy/pasting an imperative implementation of Floyd Marshall for testing purposes.
 #Code is copy/pasted from https://www.geeksforgeeks.org/floyd-warshall-algorithm-dp-16/
 #We assume a graph with 4 vertices for the performance test.
+vertices = 4
 def floyd_warshall_imperative(graph):
     dist = list(map(lambda i: list(map(lambda j: j, i)), graph))
-    for k in range(4):
-        for i in range(4):
-            for j in range(4):
+    for k in range(vertices):
+        for i in range(vertices):
+            for j in range(vertices):
                 dist[i][j] = min(dist[i][j],
                                  dist[i][k] + dist[k][j]
                                  )
