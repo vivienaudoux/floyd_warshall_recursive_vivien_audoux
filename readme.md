@@ -14,11 +14,12 @@ The script floyd_warshall_performance_test tests the performance of both the rec
 The average execution time for both implementations and the performance difference between the implementations are calculated and printed.
 
 # Unit Testing
-The script floyd_warshall_recursive_unittest includes unit tests for the three main functions of the recursive Floyd Warshall implementation using the unittest module:
+The script floyd_warshall_unittest includes unit tests for the 3 functions of the recursive Floyd Warshall implementation and for the function of the imperative implementation using the unittest module.
 
 1) TestFloydWarshallRecursive: Tests the floyd_warshall_recursive function with a simple graph.
 2) TestInitializeDistanceMatrix: Tests the initialize_distance_matrix function with a simple graph.
 3) TestFloydWarshall: Tests the floyd_warshall function with a sample graph and checks the expected result.
+4) TestFloydWarshallImperative: Tests the floyd_warshall_imperative function with a sample graph and checks the expected result.
 
 To run the unit tests, execute the script, and the test results will be displayed in the console.
 
